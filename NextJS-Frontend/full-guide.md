@@ -1,7 +1,3 @@
-Perfect — let's now **build a Next.js application** step-by-step, **fully Dockerized**, while **keeping your source code outside the container** (just like we did with Django).
-
----
-
 ## 🛠 Step-by-Step: Dockerized Next.js Setup
 
 ---
