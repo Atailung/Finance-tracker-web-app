@@ -1,4 +1,4 @@
-Absolutely! Let’s walk **step-by-step** through:
+Let’s walk **step-by-step** through:
 
 > ✅ **Creating a Django project inside Docker**,  
 > ✅ **Using PostgreSQL as the database**,  
