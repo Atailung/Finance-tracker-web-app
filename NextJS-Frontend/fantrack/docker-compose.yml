@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  nextjs:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules  # Don't overwrite node_modules in container
+    environment:
+      - NODE_ENV=development
+    stdin_open: true
+    tty: true
