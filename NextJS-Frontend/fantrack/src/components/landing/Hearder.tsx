@@ -20,14 +20,14 @@ const Header = ({ isLoggedIn = false }) => {
         </a>
         <Button
           color="primary"
-          className="text-sm font-medium rounded-lg px-4 py-2 transition-colors "
+          className="text-xl  font-medium rounded-lg px-4 py-2 transition-colors "
         >
           <a
             href={isLoggedIn ? "/dashboard" : "/login"}
             className={`${
               isLoggedIn
                 ? "text-white bg-primary-700 dark:bg-primary-600 "
-                : "text-gray-800 dark:text-white"
+                : "text-white dark:text-white"
             } focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-800`}
           >
             {isLoggedIn ? "Open Dashboard" : "Log In"}
