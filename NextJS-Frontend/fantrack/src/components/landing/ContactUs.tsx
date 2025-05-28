@@ -8,7 +8,7 @@ export default function ContactUs() {
   const [selected, setSelected] = React.useState<React.Key>("say-hi");
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 bg-background dark:bg-gray-900 min-h-screen">
+    <div className=" mx-auto px-4 py-16 sm:px-6 lg:px-8 bg-background dark:bg-gray-900 min-h-screen">
       {/* Header Section */}
       <div className="mb-12 *:flex flex-col items-center justify-center space-y-4 ">
           <div className="inline-block gap-12 items-center ">
@@ -39,7 +39,7 @@ export default function ContactUs() {
               className="mb-8"
             >
               {/* Say Hi Tab */}
-              <Tab key="say-hi" title="Say Hi!">
+              <Tab key="say-hi" className = "dark:text-white " title="Say Hi!">
                 <form className="flex flex-col gap-7">
                   <div>
                     <label
@@ -106,7 +106,7 @@ export default function ContactUs() {
               </Tab>
 
               {/* Get Quote Tab */}
-              <Tab key="get-quote" title="Get a Quote">
+              <Tab key="get-quote" className = "dark:text-white" title="Get a Quote">
                 <form className="flex flex-col gap-7">
                   <div>
                     <label
@@ -158,7 +158,7 @@ export default function ContactUs() {
                     <Link
                       size="sm"
                       onPress={() => setSelected("say-hi")}
-                      className="text-lime-500 hover:text-lime-600 font-medium transition-colors duration-200 cursor-pointer"
+                      className="text-lime-500  hover:text-lime-600 font-medium transition-colors duration-200 cursor-pointer"
                     >
                       Say Hi
                     </Link>

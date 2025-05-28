@@ -23,7 +23,7 @@ export default function LoginForm({ onSwitchMode }: LoginFormProps) {
   };
 
   return (
-    <Card className="w-full bg-white dark:bg-gray-900 rounded-3xl shadow-lg overflow-hidden">
+    <Card className="w-full bg-white border dark:bg-gray-900 rounded-3xl shadow-lg overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-lime-100/20 dark:from-gray-800/20 to-transparent pointer-events-none" />
       <CardHeader className="p-6 flex flex-col text-center">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Welcome To Fantarack</h2>

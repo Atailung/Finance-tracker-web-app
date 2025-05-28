@@ -31,7 +31,7 @@ const WhyUs: React.FC = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-10 sm:px-6 lg:px-8 bg-background dark:bg-gray-900">
+    <div className=" mx-auto px-4 py-10 sm:px-6 lg:px-8 bg-background dark:bg-gray-900">
         <div className="mb-12 *:flex flex-col items-center justify-center space-y-4 ">
             <div className="inline-block gap-12 items-center ">
                 <h1 className="bg-lime-400 text-black px-4 py-2 rounded-lg font-bold text-xl">Why us?</h1> 
@@ -76,14 +76,15 @@ const WhyUs: React.FC = () => {
         </div>
         <div className="flex gap-8 mt-12 items-center justify-between">
             <div className="3/5 flex flex-col justify-center items-start space-y-4">
-                <h1 className="text-3xl font-semibold">Let&apos;s make thinks happen</h1>
+                <h1 className="text-3xl font-semibold dark:text-white">Let&apos;s make thinks happen</h1>
                 <p className="text-foreground max-w-2xl dark:text-gray-300">
                 Join us in revolutionizing the way you manage your finances. With our
                 innovative features and user-friendly design, you&apos;ll have the
                 tools you need to take control of your financial future.
                 </p>
                 <Button color="primary"
-                className=" text-white  px-6 py-3 rounded-lg font-semibold mt-4 hover:bg-gray-900 transition-colors duration-300"
+                size="md"
+                className="  text-white font-semibold py-3 rounded-lg hover:bg-lime-500 focus:ring-2 focus:ring-lime-500 transition-all"
                 aria-label="Get started with FanTrack"
                 >
                     Get Started

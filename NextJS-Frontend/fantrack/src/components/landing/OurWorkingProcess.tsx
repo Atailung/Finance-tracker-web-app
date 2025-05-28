@@ -39,7 +39,7 @@ const OurWorkingProcess: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-10 sm:px-6 lg:px-8 bg-background dark:bg-gray-900">
+    <div className=" mx-auto px-4 py-10 sm:px-6 lg:px-8 bg-background dark:bg-gray-900">
       {/* Header Section */}
         <div className="mb-12 *:flex flex-col items-center justify-center space-y-4 ">
           <div className="inline-block gap-12 items-center ">
@@ -52,7 +52,7 @@ const OurWorkingProcess: React.FC = () => {
           </div>
         </div> 
       {/* Accordion Section */}
-        <div className="space-y-4">
+        <div className="space-y-4 border border-gray-900 dark:border-gray-700 rounded-3xl p-4 bg-gray-50 dark:bg-gray-800">
         {processes.map((process) => {
             const isOpen = openProcess === process.id;
             return (

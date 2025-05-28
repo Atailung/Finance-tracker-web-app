@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Team: React.FC = () => {
   return (
-    <div className="container mx-auto px-4 py-10 sm:px-6 lg:px-8 bg-background dark:bg-gray-900">
+    <div className=" mx-auto px-4 py-10 sm:px-6 lg:px-8 bg-background dark:bg-gray-900">
        <div className="mb-12 *:flex flex-col items-center justify-center space-y-4 ">
           <div className="inline-block gap-12 items-center ">
             <h1 className="bg-lime-400  text-black px-4 py-2 rounded-lg font-bold text-xl">
