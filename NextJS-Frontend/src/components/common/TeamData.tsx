@@ -80,3 +80,42 @@ export const teamMembers: TeamMemberType[] = [
     },
   },
 ];
+
+
+
+// "use client";
+// // import { Card, CardContent } from "@/components/ui/card";
+// // import CreateAccountDialog from "@/components/ui/accountUi/create-account-drawer";
+// // import { Plus } from "lucide-react";
+// import React from "react";
+// import DemoDahboardPage from "@/app/dashboardDemo/DemoDahboardPage";
+
+
+// const DashboardPage = () => {
+//   return (
+//     <div className="px-5">
+//       {/* Budget Progress */}
+//       <DemoDahboardPage/>
+//       {/* Overview */}
+
+//       {/* account grid */}
+//       {/* <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+//         <CreateAccountDialog>
+//           <Card className="flex flex-col hover:shadow-md  items-center justify-center h-full pt-5 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 border-gray-200 dark:border-gray-700">
+//             <CardContent className="text-center flex flex-col items-center justify-center h-full">
+//               <Plus className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+//               <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mt-2">
+//                 Create New Account
+//               </h2>
+//             </CardContent>
+//           </Card>
+//         </CreateAccountDialog>
+//       </div> */}
+//     </div>
+//   );
+// };
+
+// export default DashboardPage;
+
+
+

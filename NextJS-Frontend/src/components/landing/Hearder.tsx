@@ -17,7 +17,7 @@ const Header = ({ isLoggedIn = false }) => {
             className="h-9"
           />
           <span className="text-xl font-semibold text-gray-900 dark:text-white">
-            Fantrack
+            Fintrack
           </span>
         </Link>
         <Button

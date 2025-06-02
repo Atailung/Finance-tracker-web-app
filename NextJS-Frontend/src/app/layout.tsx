@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins as PoppinsFont } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
+import { Toaster } from "react-hot-toast";
 
 const Poppins = PoppinsFont({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -9,8 +10,6 @@ const Poppins = PoppinsFont({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
-
-
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,16 +23,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-       
-        className={`${Poppins.variable}  antialiased`}
-      >
-         <ThemeProvider
+      <body className={`${Poppins.variable}  antialiased`}>
+        <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem={false}
         >
-          {children}
+          <main>
+            <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>
