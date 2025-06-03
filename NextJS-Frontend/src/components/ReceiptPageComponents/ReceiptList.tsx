@@ -1,7 +1,7 @@
 'use client';
 
 import {  useEffect, useMemo } from 'react';
-import { Button } from '@/components/ui/button';
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
@@ -39,6 +39,7 @@ import {
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { ReceiptType } from '@/app/api/fetchReceipts';
+import { Button } from '@heroui/button';
 
 interface ReceiptListProps {
   receipts: ReceiptType[];
@@ -162,18 +163,18 @@ export function ReceiptList({
             </CardDescription>
           </div>
           <div className="flex gap-3">
-            <div className="relative">
+            <div className="relative  ">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
               <Input
                 placeholder="Search receipts..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 w-64"
+                className="pl-10 w-64 border-green-950 shadow-green-950 rounded-xl dark:text-white"
               />
             </div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="icon">
+                <Button variant="bordered" size="sm">
                   <SlidersHorizontal className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
@@ -207,7 +208,7 @@ export function ReceiptList({
       </CardHeader>
       <CardContent>
         <Tabs defaultValue="all" className="w-full" value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-3 mb-6 h-12 bg-muted/50">
+          <TabsList className="grid w-full grid-cols-3 mb-6 h-12 bg-primary-50  ">
             <TabsTrigger value="all" className="text-base font-medium data-[state=active]:bg-background">
               All ({receipts.length})
             </TabsTrigger>
@@ -232,11 +233,11 @@ export function ReceiptList({
                 </Label>
               </div>
               <div className="flex gap-2">
-                <Button variant="outline" size="sm" onClick={() => handleExport('csv')}>
+                <Button variant="bordered" size="sm" onClick={() => handleExport('csv')}>
                   <Download className="h-4 w-4 mr-2" />
                   Export Selected
                 </Button>
-                <Button variant="destructive" size="sm" onClick={() => setShowDeleteDialog(true)}>
+                <Button color="danger" size="sm" onClick={() => setShowDeleteDialog(true)}>
                   <Trash2 className="h-4 w-4 mr-2" />
                   Delete Selected
                 </Button>
@@ -345,7 +346,7 @@ export function ReceiptList({
                               Tax:{' '}
                               {new Intl.NumberFormat('en-US', {
                                 style: 'currency',
-                                currency: 'USD',
+                                currency: 'NRP',
                                 minimumFractionDigits: 2,
                               }).format(receipt.taxAmount)}
                             </div>
@@ -353,7 +354,7 @@ export function ReceiptList({
 
                           <div className="flex gap-2">
                             <Button
-                              variant="outline"
+                              variant="bordered"
                               size="sm"
                               className="gap-2"
                               onClick={() => setViewReceipt(receipt)}
@@ -419,10 +420,10 @@ export function ReceiptList({
           Showing {sortedReceipts.length} of {receipts.length} receipts
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" disabled>
+          <Button variant="bordered" size="sm" disabled>
             Previous
           </Button>
-          <Button variant="outline" size="sm" disabled>
+          <Button variant="bordered" size="sm" disabled>
             Next
           </Button>
         </div>

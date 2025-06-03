@@ -11,10 +11,11 @@ import AccountList from '@/components/accountPageComponents/AccountList';
 import AccountForm from '@/components/accountPageComponents/AccountForm';
 import AccountDetailsDialog from '@/components/accountPageComponents/AccountDetailsDialog';
 // import { formatCurrency } from '@/lib/accountUtils';
-import { Button } from '@/components/ui/button';
+
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { AlertDialog } from '@radix-ui/react-alert-dialog';
 import { AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
+import { Button } from '@heroui/button';
 
 export default function AccountsPage() {
   const [accounts, setAccounts] = useState<Account[]>([]);
@@ -201,7 +202,7 @@ export default function AccountsPage() {
   };
 
   return (
-    <div className="flex-1 space-y-6 p-4 md:p-8 pt-6 bg-slate-50 dark:bg-slate-900 min-h-screen">
+    <div className="flex-1 space-y-6 p-4 md:p-8 pt-6  dark:bg-slate-900 min-h-screen">
       <Toaster />
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
@@ -214,7 +215,7 @@ export default function AccountsPage() {
         </div>
         <div className="flex items-center gap-2">
           <Button
-            variant="outline"
+            variant="bordered"
             size="sm"
             className="h-9"
             onClick={handleRefreshAccounts}
@@ -236,8 +237,9 @@ export default function AccountsPage() {
           <Dialog open={openAddDialog} onOpenChange={setOpenAddDialog}>
             <DialogTrigger asChild>
               <Button
-                size="sm"
-                className="h-9 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+                size="md"
+                color = "primary"
+                className="h-9 bg-gradient-to-r  text-medium"
               >
                 <Plus className="mr-2 h-4 w-4" />
                 Add Account

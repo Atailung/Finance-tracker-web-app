@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { Button } from "@/components/ui/button";
+
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import {
   AlertDialog,
@@ -45,6 +45,7 @@ import { ReceiptDetailView } from "@/components/ReceiptPageComponents/ReceiptDet
 import { fetchReceipts, ReceiptType } from "@/app/api/fetchReceipts";
 import { PAYMENT_METHODS, STATUS_OPTIONS } from "@/app/constant/receipts";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@heroui/button";
 
 interface FilterOptions {
   dateRange: { start: Date | null; end: Date | null };
@@ -232,7 +233,7 @@ export default function ReceiptsPage() {
         <div className="flex gap-3">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="gap-2">
+              <Button variant="bordered" className="gap-2 shadow-md " size="md" >
                 <Download className="h-4 w-4" />
                 Export
                 <ChevronDown className="h-4 w-4 ml-1" />
@@ -259,7 +260,7 @@ export default function ReceiptsPage() {
           </DropdownMenu>
           <Popover open={showFilterPanel} onOpenChange={setShowFilterPanel}>
             <PopoverTrigger asChild>
-              <Button variant="outline" className="gap-2">
+              <Button variant="bordered" className="gap-2 shadow-md" size="md">
                 <Filter className="h-4 w-4" />
                 Filters
                 {activeFilterCount > 0 && (

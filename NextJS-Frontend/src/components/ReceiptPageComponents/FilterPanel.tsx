@@ -178,12 +178,12 @@ export function FilterPanel({
             />
             <div className="flex items-center justify-between">
               <span className="text-sm">
-                {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+                {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'NRP' }).format(
                   localFilters.amountRange.min,
                 )}
               </span>
               <span className="text-sm">
-                {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+                {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'NRP' }).format(
                   localFilters.amountRange.max,
                 )}
               </span>

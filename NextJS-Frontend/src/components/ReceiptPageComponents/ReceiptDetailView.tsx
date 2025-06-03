@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { ReceiptType } from '@/app/api/fetchReceipts';
+import { Button } from '@heroui/button';
 
 interface ReceiptDetailProps {
   receipt: ReceiptType | null;
@@ -18,10 +19,11 @@ interface ReceiptDetailProps {
 export function ReceiptDetailView({ receipt, onClose }: ReceiptDetailProps) {
   if (!receipt) return null;
 
-  const statusClasses = {
+  const statusClasses: Record<'processed' | 'pending' | 'rejected' | 'failed', string> = {
     processed: 'bg-status-processed-light-bg text-status-processed-light-text border-status-processed-light-border dark:bg-status-processed-dark-bg dark:text-status-processed-dark-text',
     pending: 'bg-status-pending-light-bg text-status-pending-light-text border-status-pending-light-border dark:bg-status-pending-dark-bg dark:text-status-pending-dark-text',
     rejected: 'bg-status-rejected-light-bg text-status-rejected-light-text border-status-rejected-light-border dark:bg-status-rejected-dark-bg dark:text-status-rejected-dark-text',
+    failed: 'bg-status-rejected-light-bg text-status-rejected-light-text border-status-rejected-light-border dark:bg-status-rejected-dark-bg dark:text-status-rejected-dark-text', 
   };
 
   return (
@@ -47,6 +49,10 @@ export function ReceiptDetailView({ receipt, onClose }: ReceiptDetailProps) {
           ) : receipt.status === 'pending' ? (
             <>
               <Clock className="h-3 w-3 mr-1" /> Pending
+            </>
+          ) : receipt.status === 'failed' ? (
+            <>
+              <AlertCircle className="h-3 w-3 mr-1" /> Failed
             </>
           ) : (
             <>
@@ -170,15 +176,15 @@ export function ReceiptDetailView({ receipt, onClose }: ReceiptDetailProps) {
       </div>
 
       <div className="flex justify-between">
-        <Button variant="outline" onClick={onClose}>
+        <Button variant="bordered"  className = " dark:text-white text-black" onClick={onClose}>
           Close
         </Button>
         <div className="flex gap-2">
-          <Button variant="outline">
+          <Button variant="bordered" className='disabled:opacity-50 disabled:cursor-not-allowed pointer-events-none'>
             <Download className="h-4 w-4 mr-2" />
             Download
           </Button>
-          <Button>
+          <Button color='danger' size='md' className='disabled disabled:opacity-50 disabled:cursor-not-allowed pointer-events-none'>
             <Edit className="h-4 w-4 mr-2" />
             Edit Receipt
           </Button>

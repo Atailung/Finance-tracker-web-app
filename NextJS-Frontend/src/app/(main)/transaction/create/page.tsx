@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { Button } from "@/components/ui/button";
+
 import {
   Popover,
   PopoverContent,
@@ -55,6 +55,7 @@ import { TransactionDetails } from "@/components/transactionPageCompontents/Tran
 import { SummaryCards } from "@/components/transactionPageCompontents/SummaryCards";
 import { TransactionTable } from "@/components/transactionPageCompontents/TransactionTable";
 import { downloadAsJson, downloadAsCsv } from "@/lib/transactionUtils";
+import { Button } from "@heroui/button";
 
 interface Transaction {
   id: string | number;
@@ -350,7 +351,11 @@ export default function TransactionsPage() {
         <div className="flex items-center gap-2">
           <Popover open={showFilterPanel} onOpenChange={setShowFilterPanel}>
             <PopoverTrigger asChild>
-              <Button variant="outline" size="sm" className="h-9 gap-2">
+              <Button
+                variant="bordered"
+                size="sm"
+                className="h-9 gap-2 shadow-md"
+              >
                 <Filter className="h-4 w-4" />
                 Filters
                 {activeFilterCount > 0 && (
@@ -372,7 +377,11 @@ export default function TransactionsPage() {
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="h-9 gap-2">
+              <Button
+                variant="bordered"
+                size="sm"
+                className="h-9 gap-2 shadow-md"
+              >
                 <Download className="h-4 w-4" />
                 Export
                 <ChevronDown className="h-4 w-4 ml-1" />
@@ -401,8 +410,9 @@ export default function TransactionsPage() {
           <Dialog open={openAddDialog} onOpenChange={setOpenAddDialog}>
             <DialogTrigger asChild>
               <Button
-                size="sm"
-                className="h-9 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+                size="md"
+                color="primary"
+                className="h-9 text-sm  hover:from-green-700 hover:to-green-700 shadow-md"
               >
                 <Plus className="mr-2 h-4 w-4" />
                 Add Transaction

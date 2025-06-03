@@ -148,7 +148,7 @@ export function TransactionTable({
           </div>
 
           <Tabs defaultValue="all" className="w-full md:w-auto" value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="grid w-full grid-cols-3 h-10">
+            <TabsList className="grid w-full grid-cols-3 h-10 bg-primary-50">
               <TabsTrigger value="all" className="data-[state=active]:bg-background">
                 All
               </TabsTrigger>
@@ -169,7 +169,7 @@ export function TransactionTable({
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
             <Input
               placeholder="Search transactions..."
-              className="pl-10 h-10"
+              className="pl-10 h-10 border border-green-700 shadow-lg"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />

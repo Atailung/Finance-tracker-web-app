@@ -125,7 +125,7 @@ export function NavMain({
                 asChild
                 isActive={item.isActive}
                 tooltip={item.title}
-                className="group relative flex items-center w-full rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 hover:bg-accent/50 hover:text-accent-foreground data-[active=true]:bg-primary/10 data-[active=true]:text-primary data-[active=true]:shadow-sm"
+                className="group relative flex items-center w-full rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 hover:bg-accent/50 hover:text-accent-foreground data-[active=true]:bg-primary data-[active=true]:text-primary data-[active=true]:shadow-sm"
               >
                 <Link href={item.url} className="flex items-center w-full">
                   {/* Active indicator */}

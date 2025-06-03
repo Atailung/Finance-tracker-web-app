@@ -33,7 +33,7 @@ export default function BudgetFilters({
             <CardDescription>Monitor your spending across all categories</CardDescription>
           </div>
           <Tabs defaultValue="all" className="w-full md:w-auto" value={categoryFilter} onValueChange={setCategoryFilter}>
-            <TabsList className="grid w-full grid-cols-3 bg-[#1f4842] text-white">
+            <TabsList className="grid w-full grid-cols-3 bg-primary-50 ">
               <TabsTrigger value="all">All</TabsTrigger>
               <TabsTrigger value="essential">Essential</TabsTrigger>
               <TabsTrigger value="lifestyle">Lifestyle</TabsTrigger>

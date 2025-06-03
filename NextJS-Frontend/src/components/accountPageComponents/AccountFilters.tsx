@@ -49,11 +49,11 @@ export default function AccountFilters({
           </div>
           <Tabs
             defaultValue="all"
-            className="w-full md:w-auto"
+            className="w-full md:w-auto "
             value={accountFilter}
             onValueChange={setAccountFilter}
           >
-            <TabsList className="grid w-full grid-cols-6">
+            <TabsList className="grid w-full grid-cols-6 bg-primary-50">
               <TabsTrigger value="all">All</TabsTrigger>
               <TabsTrigger value="checking">Checking</TabsTrigger>
               <TabsTrigger value="savings">Savings</TabsTrigger>
@@ -73,7 +73,7 @@ export default function AccountFilters({
             />
             <Input
               placeholder="Search accounts..."
-              className="pl-10 h-10"
+              className="pl-10 h-10 border-green-700 shadow-md rounded-lg"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               aria-label="Search accounts"

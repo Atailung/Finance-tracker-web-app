@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { Button } from '@/components/ui/button';
+
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
@@ -29,6 +29,7 @@ import {
   PAYMENT_METHODS,
 } from "@/app//constant/receipts";
 import {  categoryIcons, accountIcons } from "@/components/common/CategoryIcons";
+import { Button } from '@heroui/button';
 interface Transaction {
   id?: number;
   date: string | Date;
@@ -85,7 +86,7 @@ export function TransactionForm({ transaction, onSubmit, onCancel, isSubmitting 
   }, [transaction]);
 
   const handleChange = useCallback(
-    (field: string, value: any) => {
+    (field: string, value: string | number | Date) => {
       setFormData((prev) => ({ ...prev, [field]: value }));
       if (errors[field]) {
         setErrors((prev) => {
@@ -209,7 +210,7 @@ export function TransactionForm({ transaction, onSubmit, onCancel, isSubmitting 
           <Popover>
             <PopoverTrigger asChild>
               <Button
-                variant="outline"
+                variant="bordered"
                 className={cn(
                   'w-full justify-start text-left font-normal h-10',
                   !formData.date && 'text-muted-foreground',
@@ -223,7 +224,7 @@ export function TransactionForm({ transaction, onSubmit, onCancel, isSubmitting 
               <Calendar
                 mode="single"
                 selected={formData.date ? new Date(formData.date) : undefined}
-                onSelect={(date) => handleChange('date', date)}
+                onSelect={(date) => { if (date) handleChange('date', date); }}
                 initialFocus
               />
             </PopoverContent>
@@ -352,7 +353,7 @@ export function TransactionForm({ transaction, onSubmit, onCancel, isSubmitting 
       </div>
 
       <div className="flex flex-col-reverse sm:flex-row gap-2 sm:justify-end pt-4 border-t">
-        <Button type="button" variant="outline" onClick={onCancel} className="w-full sm:w-auto" disabled={isSubmitting}>
+        <Button type="button" variant="bordered" onClick={onCancel} className="w-full sm:w-auto" disabled={isSubmitting}>
           Cancel
         </Button>
         <Button
