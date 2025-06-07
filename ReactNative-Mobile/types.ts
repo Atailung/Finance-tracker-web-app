@@ -141,18 +141,27 @@ export type UserDataType = {
 };
 
 export type AuthContextType = {
-    user: UserType;
-    setUser: Function;
-    login: (
-        email: string,
-        password: string
-    ) => Promise<{ success: boolean; msg?: string }>;
-    register: (
-        email: string,
-        password: string,
-        name: string
-    ) => Promise<{ success: boolean; msg?: string }>;
-    updateUserData: (userId: string) => Promise<void>;
+    
+    user: UserType | null;
+    setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
+    login: (email: string, password: string) => Promise<{ success: boolean; msg?: string }>;
+    register: (email: string, password: string, name: string) => Promise<{ success: boolean; msg?: string }>;
+    logout: () => Promise<{ success: boolean; msg?: string }>;
+    updateUserData: (uid: string) => Promise<void>;
+    
+    // user: UserType;
+    // setUser: Function;
+    // login: (
+    //     email: string,
+    //     password: string
+    // ) => Promise<{ success: boolean; msg?: string }>;
+    // // register: (
+    // //     email: string,
+    // //     password: string,
+    // //     name: string
+    // // ) => Promise<{ success: boolean; msg?: string }>;
+    // logout: () => Promise<{ success: boolean; msg?: string }>
+    // updateUserData: (userId: string) => Promise<void>;
 };
 
 export type ResponseType = {
