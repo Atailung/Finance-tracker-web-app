@@ -1,50 +1,73 @@
-# Welcome to your Expo app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+---
+# FinTrack – Personal Finance Tracker App 👋
 
-## Get started
+Welcome to **FinTrack**, a **React Native**-powered mobile application designed to help you efficiently manage your personal finances. This app enables **expense tracking, balance monitoring, and categorization** to give you a clear financial overview.
 
-1. Install dependencies
+## 🚀 Features
 
-   ```bash
-   npm install
-   ```
+- **Expense Tracker** – Log and monitor your spending habits.
+- **Balance Overview** – Keep track of your available funds and transactions.
+- **Category-Based Expenses** – Organize expenditures into various categories.
+- **Insightful Analytics** (Coming Soon) – Gain insights into your financial trends.
+- **Custom Budgeting** (Coming Soon) – Set budget limits for different spending categories.
+- **Multi-Currency Support** (Future Upgrade) – Manage expenses in multiple currencies.
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 🔧 Get Started
 
-In the output, you'll find options to open the app in a
+### 1. Install dependencies
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+```bash
+npm install
+```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### 2. Start the app
 
-## Get a fresh project
+```bash
+npx expo start
+```
 
-When you're ready, run:
+Upon launching, you have multiple options:
+
+- [Development Build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Android Emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS Simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go) – A sandbox for quick app previews.
+
+---
+
+## 🛠 Development
+
+Start working on the application by modifying files inside the **app** directory. This project utilizes [file-based routing](https://docs.expo.dev/router/introduction/) for seamless navigation.
+
+If you need a fresh environment, run:
 
 ```bash
 npm run reset-project
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+This resets the project by moving the starter files to the **app-example** directory while setting up a blank **app** directory for your new development.
 
-## Learn more
+---
 
-To learn more about developing your project with Expo, look at the following resources:
+## 📚 Learn More
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Explore additional resources to enhance development:
 
-## Join the community
+- [Expo Documentation](https://docs.expo.dev/) – Learn Expo fundamentals and deep dive into advanced topics.
+- [Step-by-Step Expo Tutorial](https://docs.expo.dev/tutorial/introduction/) – Build a project that runs across **Android, iOS, and the web**.
 
-Join our community of developers creating universal apps.
+---
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 🌎 Join the Community
+
+Be part of the Expo ecosystem and connect with fellow developers:
+
+- [Expo GitHub](https://github.com/expo/expo) – Contribute and explore the open-source framework.
+- [Expo Discord](https://chat.expo.dev) – Engage in discussions and seek support.
+
+---
+
+
