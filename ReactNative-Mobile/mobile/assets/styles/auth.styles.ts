@@ -1,0 +1,108 @@
+import { StyleSheet } from "react-native";
+import { COLORS } from "../../src/constants/colors";
+
+export const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: COLORS.background,
+        padding: 20,
+        justifyContent: "center" as const,
+    },
+    illustration: {
+        width: "100%",
+        height: 310,
+        resizeMode: "contain" as const,
+    },
+    title: {
+        fontSize: 32,
+        fontWeight: "bold" as const,
+        color: COLORS.text,
+        marginVertical: 15,
+        textAlign: "center" as const,
+    },
+    input: {
+        backgroundColor: COLORS.white,
+        borderRadius: 12,
+        padding: 15,
+        marginBottom: 16,
+        borderWidth: 1,
+        borderColor: COLORS.border,
+        fontSize: 16,
+        color: COLORS.text,
+    },
+    errorInput: {
+        borderColor: COLORS.expense,
+    },
+    button: {
+        backgroundColor: COLORS.primary,
+        borderRadius: 12,
+        padding: 16,
+        alignItems: "center" as const,
+        marginTop: 10,
+        marginBottom: 20,
+    },
+    buttonText: {
+        color: COLORS.white,
+        fontSize: 18,
+        fontWeight: "600" as const,
+    },
+    footerContainer: {
+        flexDirection: "row" as const,
+        justifyContent: "center" as const,
+        alignItems: "center" as const,
+        gap: 8,
+    },
+    footerText: {
+        color: COLORS.text,
+        fontSize: 16,
+    },
+    linkText: {
+        color: COLORS.primary,
+        fontSize: 16,
+        fontWeight: "600" as const,
+    },
+    verificationContainer: {
+        flex: 1,
+        backgroundColor: COLORS.background,
+        padding: 20,
+        justifyContent: "center" as const,
+        alignItems: "center" as const,
+    },
+    verificationTitle: {
+        fontSize: 24,
+        fontWeight: "bold" as const,
+        color: COLORS.text,
+        marginBottom: 20,
+        textAlign: "center" as const,
+    },
+    verificationInput: {
+        backgroundColor: COLORS.white,
+        borderRadius: 12,
+        padding: 15,
+        marginBottom: 16,
+        borderWidth: 1,
+        borderColor: COLORS.border,
+        fontSize: 16,
+        color: COLORS.text,
+        width: "100%",
+        textAlign: "center" as const,
+        letterSpacing: 2,
+    },
+    errorBox: {
+        backgroundColor: "#FFE5E5",
+        padding: 12,
+        borderRadius: 8,
+        borderLeftWidth: 4,
+        borderLeftColor: COLORS.expense,
+        marginBottom: 16,
+        flexDirection: "row" as const,
+        alignItems: "center" as const,
+        width: "100%",
+    },
+    errorText: {
+        color: COLORS.text,
+        marginLeft: 8,
+        flex: 1,
+        fontSize: 14,
+    },
+});
