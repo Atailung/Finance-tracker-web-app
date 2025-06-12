@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { accountSchema } from "@/lib/schema";
 import toast from "react-hot-toast";
 
-type AccountFormData = z.infer<typeof accountSchema>;
+type AccountFormData = {
+  name: string;
+  type: "CURRENT" | "SAVINGS";
+  balance: string;
+  isDefault?: boolean;
+};
 
 export const useAccountForm = () => {
   const [open, setOpen] = useState(false);
