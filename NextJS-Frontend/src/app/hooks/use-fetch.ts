@@ -6,6 +6,15 @@ const useFetch = (cb: () => Promise<any>) => {
     const [error, setError] = useState(null);
 
     const fetchData = async () => {
+        try {
+            setLoading(true);
+            const result = await cb();
+            setData(result);
+        } catch (err) {
+            setError(err);
+        } finally {
+            setLoading(false);
+        }
     }
     return {
         data,   
