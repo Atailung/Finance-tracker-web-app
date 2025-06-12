@@ -12,9 +12,8 @@ export interface Account {
   recentActivity: { amount: number; description: string }[];
   isDefault: boolean;
   dueDate?: string;
-  creditLimit?: string;
+  creditLimit?: number;
   performance?: string;
-  onSubmit: (account: Partial<Account>) => void;
 }
 
 export async function fetchAccounts(): Promise<Account[]> {
