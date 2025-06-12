@@ -97,26 +97,24 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar
       collapsible="icon"
-      className="border-r border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+      className="border-r border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-300 ease-in-out"
       {...props}
     >
-      <SidebarHeader className="border-b border-border/40 bg-background/50">
+      <SidebarHeader className="border-b border-border/40 bg-background/50 backdrop-blur-sm">
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
 
-      <SidebarContent className="px-2 py-4">
+      <SidebarContent className="px-2 py-4 overflow-y-auto scrollbar-thin scrollbar-thumb-border/40 scrollbar-track-transparent hover:scrollbar-thumb-border/60">
         <NavMain items={data.navMain} />
       </SidebarContent>
 
-      <SidebarFooter className="border-t border-border/40 bg-background/50 p-2 space-y-2">
-        {/* Improved toggle button with proper icon management */}
+      <SidebarFooter className="border-t border-border/40 bg-background/50 backdrop-blur-sm p-2 space-y-2">
         <div className="flex justify-center">
           <button
             onClick={toggleSidebar}
-            className="group relative h-8 w-8 rounded-md border border-border/40 bg-background hover:bg-accent hover:text-accent-foreground transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md"
+            className="group relative h-8 w-8 rounded-md border border-border/40 bg-background hover:bg-accent hover:text-accent-foreground transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md hover:scale-105 active:scale-95"
             aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
-            {/* Icon with smooth transition */}
             <div className="relative overflow-hidden">
               <ChevronLeft
                 className={`h-4 w-4 transition-all duration-300 ${
@@ -134,19 +132,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               />
             </div>
 
-            {/* Hover effect overlay */}
             <div className="absolute inset-0 rounded-md bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </button>
         </div>
 
-        {/* Enhanced NavUser with better spacing */}
         <div className="pt-2">
           <NavUser user={data.user} />
         </div>
       </SidebarFooter>
 
-      {/* Enhanced sidebar rail with gradient */}
-      <SidebarRail className="bg-gradient-to-b from-transparent via-border/20 to-transparent" />
+      <SidebarRail className="bg-gradient-to-b from-transparent via-border/20 to-transparent hover:via-border/40 transition-colors duration-200" />
     </Sidebar>
   );
 }
