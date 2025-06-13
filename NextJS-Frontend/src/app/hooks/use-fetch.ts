@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-interface FetchState<T> {
-    data: T | undefined;
-    loading: boolean | null;
-    error: Error | null;
-}
+// interface FetchState<T> {
+//     data: T | undefined;
+//     loading: boolean | null;
+//     error: Error | null;
+// }
 
 const useFetch = <T>(cb: () => Promise<T>) => {
     const [data, setData] = useState<T | undefined>(undefined);

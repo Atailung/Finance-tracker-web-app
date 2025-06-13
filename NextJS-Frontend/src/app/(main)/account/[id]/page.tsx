@@ -151,7 +151,7 @@ export default function AccountsPage() {
       }
       toast.success('Account added successfully!');
       setOpenAddDialog(false);
-    } catch (error) {
+    } catch  {
       toast.error('Failed to add account');
     } finally {
       setIsSubmitting(false);
@@ -178,7 +178,7 @@ export default function AccountsPage() {
       }
       toast.success('Account updated successfully!');
       setOpenEditDialog(false);
-    } catch (error) {
+    } catch  {
       toast.error('Failed to update account');
     } finally {
       setIsSubmitting(false);
@@ -194,7 +194,7 @@ export default function AccountsPage() {
       toast.success('Account deleted successfully!');
       setAccountToDelete(null);
       setOpenDeleteDialog(false);
-    } catch (error) {
+    } catch {
       toast.error('Failed to delete account');
     } finally {
       setIsSubmitting(false);
