@@ -1,5 +1,5 @@
 # Receipt Parser API with Django & Gemini AI
-## by GuyVanced
+
 
 ![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
 ![Django](https://img.shields.io/badge/django-4.2+-green.svg)
@@ -22,12 +22,6 @@ A REST API that extracts structured data from receipt images using Google's Gemi
 - Django 4.2+
 
 ## Setup
-
-### 1. Clone Repository
-```bash
-git clone https://github.com/GuyVanced/receipt-parser-api.git
-cd receipt-parser-api
-```
 
 ### 2. Configure Environment
 
@@ -90,6 +84,19 @@ curl -X POST -F "image=@receipt.jpg" http://127.0.0.1:8000/receipt/api/
 
 * 'curl.exe ' instead of 'curl' in Windows Powershell
 
+
+## Testing with Postman
+
+1. Set request type to `POST`
+    
+2. URL: `http://127.0.0.1:8000/receipt/api/`
+    
+3. Body → form-data → Add key `image` (File type)
+    
+4. Select receipt image
+    
+5. Send request
+  
 ## Sample Response
 
 ```json
@@ -109,18 +116,6 @@ curl -X POST -F "image=@receipt.jpg" http://127.0.0.1:8000/receipt/api/
   "accuracy": 95.7
 }
 ```
-
-## Testing with Postman
-
-1. Set request type to `POST`
-    
-2. URL: `http://127.0.0.1:8000/receipt/api/`
-    
-3. Body → form-data → Add key `image` (File type)
-    
-4. Select receipt image
-    
-5. Send request
 
 ## Troubleshooting
 
