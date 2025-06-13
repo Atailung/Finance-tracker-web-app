@@ -123,7 +123,7 @@ export default function TransactionsPage() {
     async function loadTransactions() {
       const data = await fetchTransactions();
       // Normalize status to lowercase for compatibility
-      const normalizedData = data.map((t: any) => ({
+      const normalizedData = data.map((t: Transaction) => ({
         ...t,
         status:
           typeof t.status === "string" ? t.status.toLowerCase() : t.status,

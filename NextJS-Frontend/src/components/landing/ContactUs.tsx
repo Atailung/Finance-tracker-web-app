@@ -5,7 +5,11 @@ import { Tabs, Tab, Input, Link, Button, Card, CardBody } from "@heroui/react";
 import Image from "next/image";
 
 export default function ContactUs() {
-  const [selected, setSelected] = React.useState<React.Key>("say-hi");
+  const [selected, setSelected] = React.useState<"say-hi" | "get-quote">("say-hi");
+
+  const handleSelectionChange = (key: React.Key) => {
+    setSelected(key as "say-hi" | "get-quote");
+  };
 
   return (
     <div className=" mx-auto px-4 py-16 sm:px-6 lg:px-8 bg-background dark:bg-gray-900 min-h-screen">
@@ -35,7 +39,7 @@ export default function ContactUs() {
               aria-label="Contact form tabs"
               selectedKey={selected}
               size="lg"
-              onSelectionChange={setSelected}
+              onSelectionChange={handleSelectionChange}
               className="mb-8"
             >
               {/* Say Hi Tab */}

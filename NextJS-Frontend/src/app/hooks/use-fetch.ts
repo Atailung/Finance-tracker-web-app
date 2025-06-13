@@ -1,9 +1,15 @@
-const { useState, useEffect } = require('react');
+import { useState } from 'react';
 
-const useFetch = (cb: () => Promise<any>) => {
-    const [data, setData] = useState(undefined);
-    const [loading, setLoading] = useState(null);
-    const [error, setError] = useState(null);
+interface FetchState<T> {
+    data: T | undefined;
+    loading: boolean | null;
+    error: Error | null;
+}
+
+const useFetch = <T>(cb: () => Promise<T>) => {
+    const [data, setData] = useState<T | undefined>(undefined);
+    const [loading, setLoading] = useState<boolean | null>(null);
+    const [error, setError] = useState<Error | null>(null);
 
     const fetchData = async () => {
         try {
@@ -11,7 +17,7 @@ const useFetch = (cb: () => Promise<any>) => {
             const result = await cb();
             setData(result);
         } catch (err) {
-            setError(err);
+            setError(err instanceof Error ? err : new Error(String(err)));
         } finally {
             setLoading(false);
         }
@@ -23,3 +29,5 @@ const useFetch = (cb: () => Promise<any>) => {
         fetchData
     };
 }
+
+export default useFetch;
