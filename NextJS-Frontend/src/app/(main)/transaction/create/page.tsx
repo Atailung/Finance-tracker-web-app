@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 
 import {
   Popover,
@@ -118,24 +118,49 @@ export default function TransactionsPage() {
     merchants: [],
     paymentMethods: [],
   });
+  // previous code 
+  // useEffect(() => {
+  //   async function loadTransactions() {
+  //     const data = await fetchTransactions();
+  //     // Normalize status to lowercase for compatibility
+  //     const normalized = (data as Transaction[]).map((t) => ({
+  //       ...t,
+  //       status:
+  //         typeof t.status === "string"
+  //           ? ["completed", "pending", "failed"].includes(t.status.toLowerCase())
+  //             ? (t.status.toLowerCase() as "completed" | "pending" | "failed")
+  //             : "failed"
+  //           : t.status,
+  //     }));
+  //     setTransactions(normalized);
+  //   }
+  //   loadTransactions();
+  // }, []);
 
+
+  // update code 
   useEffect(() => {
     async function loadTransactions() {
-      const data = await fetchTransactions();
-      // Normalize status to lowercase for compatibility
-      const normalized = (data as Transaction[]).map((t) => ({
-        ...t,
-        status:
-          typeof t.status === "string"
-            ? ["completed", "pending", "failed"].includes(t.status.toLowerCase())
-              ? (t.status.toLowerCase() as "completed" | "pending" | "failed")
-              : "failed"
-            : t.status,
-      }));
-      setTransactions(normalized);
+      try {
+        const data = await fetchTransactions();
+        const normalized = (data as Transaction[]).map((t) => ({
+          ...t,
+          status:
+            typeof t.status === "string"
+              ? ["completed", "pending", "failed"].includes(t.status.toLowerCase())
+                ? (t.status.toLowerCase() as "completed" | "pending" | "failed")
+                : "failed"
+              : t.status,
+        }));
+        setTransactions(normalized);
+      } catch (error) {
+        console.error("Failed to load transactions:", error);
+      }
     }
     loadTransactions();
   }, []);
+
+
 
   const stats = useMemo(() => {
     const totalIncome = transactions
@@ -194,36 +219,39 @@ export default function TransactionsPage() {
     });
   }, [transactions, filterOptions]);
 
-  const handleAddTransaction = async (newTransaction: Partial<Transaction>) => {
-    setIsSubmitting(true);
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      const maxId = transactions.reduce(
-        (max, transaction) => Math.max(max, Number(transaction.id)),
-        0
-      );
-      const transactionToAdd: Transaction = {
-        id: maxId + 1,
-        description: newTransaction.description || "",
-        amount: newTransaction.amount || 0,
-        category: newTransaction.category || "",
-        account: newTransaction.account || "",
-        date: newTransaction.date || new Date().toISOString(),
-        status: newTransaction.status || "completed",
-        merchant: newTransaction.merchant,
-        notes: newTransaction.notes,
-        paymentMethod: newTransaction.paymentMethod,
-        tags: [],
-      };
+  const handleAddTransaction = useCallback(
+    async (newTransaction: Partial<Transaction>) => {
+      setIsSubmitting(true);
+      try {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        const maxId = transactions.reduce(
+          (max, transaction) => Math.max(max, Number(transaction.id)),
+          0
+        );
+        const transactionToAdd: Transaction = {
+          id: maxId + 1,
+          description: newTransaction.description || "",
+          amount: newTransaction.amount || 0,
+          category: newTransaction.category || "",
+          account: newTransaction.account || "",
+          date: newTransaction.date || new Date().toISOString(),
+          status: newTransaction.status || "completed",
+          merchant: newTransaction.merchant,
+          notes: newTransaction.notes,
+          paymentMethod: newTransaction.paymentMethod,
+          tags: [],
+        };
 
-      setTransactions((prev) => [transactionToAdd, ...prev]);
-      setOpenAddDialog(false);
-    } catch (error) {
-      console.error("Failed to add transaction:", error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+        setTransactions((prev) => [transactionToAdd, ...prev]);
+        setOpenAddDialog(false);
+      } catch (error) {
+        console.error("Failed to add transaction:", error);
+      } finally {
+        setIsSubmitting(false);
+      }
+    },
+    [transactions]
+  );
 
   const handleUpdateTransaction = async (
     updatedTransaction: Partial<Transaction>
@@ -272,6 +300,11 @@ export default function TransactionsPage() {
       setIsSubmitting(false);
     }
   };
+
+  const handleCancelAdd = useCallback(() => {
+    setOpenAddDialog(false);
+  }, []);
+
 
   const handleExport = (exportFormat: "json" | "csv") => {
     const dataToExport =
@@ -432,8 +465,9 @@ export default function TransactionsPage() {
               <ScrollArea className="max-h-[70vh]">
                 <TransactionForm
                   onSubmit={handleAddTransaction}
-                  onCancel={() => setOpenAddDialog(false)}
+                  // onCancel={() => setOpenAddDialog(false)}
                   isSubmitting={isSubmitting}
+                  onCancel={handleCancelAdd }
                 />
               </ScrollArea>
             </DialogContent>
