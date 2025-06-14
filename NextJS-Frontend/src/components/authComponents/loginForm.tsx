@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Button, Input } from "@heroui/react";
-import { Card, CardHeader, CardBody, CardFooter } from "@heroui/card";
+import { Card, CardHeader, CardDescription, CardFooter } from "@/components/ui/card";
 import { Loader2, Github } from "lucide-react";
 import Image from "next/image";
 
@@ -31,7 +31,7 @@ export default function LoginForm({ onSwitchMode }: LoginFormProps) {
           Enter your credentials to access your account
         </p>
       </CardHeader>
-      <CardBody className="p-6 space-y-6">
+      <CardDescription className="p-6 space-y-6">
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-2">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -110,7 +110,7 @@ export default function LoginForm({ onSwitchMode }: LoginFormProps) {
             <Image src="/Google_Logo.svg" alt="Google logo" width={16} height={16} className="mr-2" /> Google
           </Button>
         </div>
-      </CardBody>
+      </CardDescription>
       <CardFooter className="p-6 mx-auto text-center items-center">
         <p className="text-sm text-center  text-gray-600 dark:text-gray-400">
           Don&apos;t have an account?{" "}

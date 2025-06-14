@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import { Button, Input } from "@heroui/react";
-import { Card, CardHeader, CardBody, CardFooter } from "@heroui/card";
+
+import { Card, CardHeader, CardDescription, CardFooter } from "@/components/ui/card";
 import { Loader2, Check } from "lucide-react";
 
 interface ResetPasswordFormProps {
@@ -33,14 +34,14 @@ export function ResetPasswordForm({ onSwitchMode }: ResetPasswordFormProps) {
             We&apos;ve sent a password reset link to your email address
           </p>
         </CardHeader>
-        <CardBody className="p-6 space-y-6 text-center">
+        <CardDescription className="p-6 space-y-6 text-center">
           <div className="mx-auto w-12 h-12 bg-lime-100 dark:bg-lime-900/30 rounded-full flex items-center justify-center">
             <Check className="w-6 h-6 text-lime-500" />
           </div>
           <p className="text-sm text-gray-600 dark:text-gray-400">
             If you don&apos;t see the email, check your spam folder or try again.
           </p>
-        </CardBody>
+        </CardDescription>
         <CardFooter className="p-6 flex flex-col space-y-3">
           <Button
             color="primary"
@@ -69,7 +70,7 @@ export function ResetPasswordForm({ onSwitchMode }: ResetPasswordFormProps) {
           Enter your email address to receive a reset link
         </p>
       </CardHeader>
-      <CardBody className="p-6 space-y-6">
+      <CardDescription className="p-6 space-y-6">
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-2">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -98,7 +99,7 @@ export function ResetPasswordForm({ onSwitchMode }: ResetPasswordFormProps) {
             Send Reset Link
           </Button>
         </form>
-      </CardBody>
+      </CardDescription>
       <CardFooter className="p-6 text-center">
         <p className="text-sm text-gray-600 dark:text-gray-400">
           Remember your password?{" "}
