@@ -3,7 +3,7 @@
 import React from "react";
 // import Image from "next/image";
 import { Button } from "@heroui/react";
-import { Card, CardHeader, CardBody } from "@heroui/card";
+import { Card, CardTitle, CardDescription  } from "@/components/ui/card";
 import Link from "next/link";
 
 export default function NotFoundPage() {
@@ -20,7 +20,7 @@ export default function NotFoundPage() {
               Oops! The page you&apos;re looking for doesn&apos;t exist.
             </p>
           </CardHeader>
-          <CardBody className="p-6 text-center">
+          <CardTitle className="p-6 text-center">
             <p className="text-gray-600 dark:text-gray-400 mb-4">
               It looks like you might have taken a wrong turn. Let&apos;s get you back on track!
             </p>
@@ -34,7 +34,7 @@ export default function NotFoundPage() {
                 Return to Homepage
               </Button>
             </Link>
-          </CardBody>
+          </CardTitle>
         </Card>
       </div>
     </div>

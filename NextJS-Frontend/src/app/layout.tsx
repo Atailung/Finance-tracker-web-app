@@ -37,7 +37,7 @@ export default function RootLayout({
         <body className={`${Poppins.variable} antialiased`}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem={false}>
             <main>
-              <header className="flex justify-end items-center p-4 gap-4 h-16">
+            <header className="flex justify-end items-center p-4 gap-4 h-16">
                 <SignedOut>
                   <SignInButton />
                   <SignUpButton />
