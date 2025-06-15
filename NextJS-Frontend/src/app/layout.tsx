@@ -1,4 +1,4 @@
-
+// app/layout.tsx or app/layout.js (depending on your project)
 import type { Metadata } from "next";
 import { Poppins as PoppinsFont } from "next/font/google";
 import "./globals.css";
@@ -6,12 +6,7 @@ import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
 
 import {
-  ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
+  ClerkProvider, 
 } from "@clerk/nextjs";
 
 const Poppins = PoppinsFont({
@@ -37,21 +32,13 @@ export default function RootLayout({
         <body className={`${Poppins.variable} antialiased`}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem={false}>
             <main>
-            <header className="flex justify-end items-center p-4 gap-4 h-16">
-                <SignedOut>
-                  <SignInButton />
-                  <SignUpButton />
-                </SignedOut>
-                <SignedIn>
-                  <UserButton />
-                </SignedIn>
-              </header>
+              
               <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
               {children}
             </main>
           </ThemeProvider>
         </body>
       </html>
-    </ClerkProvider>
+    </ClerkProvider> 
   );
 }

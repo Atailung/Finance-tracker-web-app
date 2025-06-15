@@ -1,147 +1,167 @@
 "use client";
 import * as React from "react";
+import Link from "next/link";
+import { ChevronRight, type LucideIcon } from "lucide-react";
 import {
-  BarChart3,
-  CreditCard,
-  GalleryVerticalEnd,
-  PieChart,
-  Receipt,
-  Settings2,
-  LayoutDashboard,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
-import { NavMain } from "@/components/nav-main";
-import { NavUser } from "@/components/nav-user";
-import { TeamSwitcher } from "@/components/team-switcher";
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarRail,
-  useSidebar,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 
-// Enhanced sample data with better structure
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  teams: [
-    {
-      name: "Fintack",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-  ],
-  navMain: [
-    {
-      title: "Dashboard",
-      url: "/dashboard",
-      icon: LayoutDashboard,
-      isActive: true,
-    },
-    {
-      title: "Transactions",
-      url: "/transaction/create",
-      icon: CreditCard,
-    },
-    {
-      title: "Budgets",
-      url: "/budgets",
-      icon: PieChart,
-    },
-    {
-      title: "Accounts",
-      url: "/account",
-      icon: BarChart3,
-    },
-    {
-      title: "Receipts",
-      url: "/receipts",
-      icon: Receipt,
-    },
-    {
-      title: "Settings",
-      url: "/settings",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "/settings/general",
-        },
-        {
-          title: "Team",
-          url: "/settings/team",
-        },
-        {
-          title: "Billing",
-          url: "/settings/billing",
-        },
-        {
-          title: "Limits",
-          url: "/settings/limits",
-        },
-      ],
-    },
-  ],
-};
+export function NavMain({
+  items,
+}: {
+  items: {
+    title: string;
+    url: string;
+    icon?: LucideIcon;
+    isActive?: boolean;
+    badge?: string | number;
+    items?: {
+      title: string;
+      url: string;
+      isActive?: boolean;
+      badge?: string | number;
+    }[];
+  }[];
+}) {
+  const [openItems, setOpenItems] = React.useState<Set<string>>(new Set());
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { toggleSidebar, state } = useSidebar();
-  const isCollapsed = state === "collapsed";
+  const toggleItem = (title: string) => {
+    const newOpenItems = new Set(openItems);
+    if (newOpenItems.has(title)) {
+      newOpenItems.delete(title);
+    } else {
+      newOpenItems.add(title);
+    }
+    setOpenItems(newOpenItems);
+  };
 
   return (
-    <Sidebar
-      collapsible="icon"
-      className="border-r border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-300 ease-in-out"
-      {...props}
-    >
-      <SidebarHeader className="border-b border-border/40 bg-background/50 backdrop-blur-sm">
-        <TeamSwitcher teams={data.teams} />
-      </SidebarHeader>
+    <SidebarGroup className="group-data-[collapsible=icon]:px-0">
+      <SidebarGroupLabel className="text-xs font-semibold text-slate-500 uppercase tracking-wider px-3 py-3 mb-2 group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:pointer-events-none border-b border-slate-100">
+        Navigation
+      </SidebarGroupLabel>
 
-      <SidebarContent className="px-2 py-4 overflow-y-auto scrollbar-thin scrollbar-thumb-border/40 scrollbar-track-transparent hover:scrollbar-thumb-border/60">
-        <NavMain items={data.navMain} />
-      </SidebarContent>
+      <SidebarMenu className="space-y-1 px-2 group-data-[collapsible=icon]:px-0">
+        {items.map((item) => (
+          <SidebarMenuItem key={item.title} className="relative">
+            {item.items?.length ? (
+              <Collapsible
+                open={openItems.has(item.title) || item.isActive}
+                onOpenChange={() => toggleItem(item.title)}
+                className="group/collapsible"
+              >
+                <CollapsibleTrigger asChild>
+                  <SidebarMenuButton
+                    tooltip={item.title}
+                    isActive={item.isActive}
+                    className="group relative flex items-center w-full rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300 ease-out hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-slate-900 hover:shadow-sm data-[active=true]:bg-gradient-to-r data-[active=true]:from-blue-500 data-[active=true]:to-indigo-600 data-[active=true]:text-white data-[active=true]:shadow-lg hover:translate-x-1 active:scale-[0.98] border border-transparent hover:border-blue-100 data-[active=true]:border-blue-300"
+                  >
+                    {/* Active indicator bar */}
+                    <div className="absolute -left-2 top-1/2 h-6 w-1 bg-gradient-to-b from-blue-500 to-indigo-600 rounded-full transition-all duration-300 -translate-y-1/2 opacity-0 scale-y-0 data-[active=true]:opacity-100 data-[active=true]:scale-y-100" />
 
-      <SidebarFooter className="border-t border-border/40 bg-background/50 backdrop-blur-sm p-2 space-y-2">
-        <div className="flex justify-center">
-          <button
-            onClick={toggleSidebar}
-            className="group relative h-8 w-8 rounded-md border border-border/40 bg-background hover:bg-accent hover:text-accent-foreground transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md hover:scale-105 active:scale-95"
-            aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-          >
-            <div className="relative overflow-hidden">
-              <ChevronLeft
-                className={`h-4 w-4 transition-all duration-300 ${
-                  isCollapsed
-                    ? "translate-x-full opacity-0 rotate-180"
-                    : "translate-x-0 opacity-100 rotate-0"
-                }`}
-              />
-              <ChevronRight
-                className={`h-4 w-4 absolute top-0 left-0 transition-all duration-300 ${
-                  isCollapsed
-                    ? "translate-x-0 opacity-100 rotate-0"
-                    : "-translate-x-full opacity-0 rotate-180"
-                }`}
-              />
-            </div>
+                    {item.icon && (
+                      <div className="relative mr-3">
+                        <item.icon className="h-5 w-5 transition-all duration-300 text-slate-600 group-hover:text-blue-600 data-[active=true]:text-white group-hover:scale-110 group-hover:rotate-3" />
+                        {/* Icon background glow for active state */}
+                        <div className="absolute inset-0 bg-white/20 rounded-full scale-0 transition-transform duration-300 data-[active=true]:scale-150 opacity-0 data-[active=true]:opacity-100" />
+                      </div>
+                    )}
 
-            <div className="absolute inset-0 rounded-md bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </button>
-        </div>
+                    <span className="flex-1 text-left text-slate-700 group-hover:text-slate-900 data-[active=true]:text-white font-medium group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:pointer-events-none transition-colors duration-300">
+                      {item.title}
+                    </span>
 
-        <div className="pt-2">
-          <NavUser user={data.user} />
-        </div>
-      </SidebarFooter>
+                    {item.badge && (
+                      <span className="inline-flex items-center justify-center px-2.5 py-1 text-xs font-semibold bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-700 rounded-full mr-2 group-data-[collapsible=icon]:opacity-0 transition-all duration-300 group-hover:from-blue-200 group-hover:to-indigo-200 data-[active=true]:bg-white/20 data-[active=true]:text-white shadow-sm">
+                        {item.badge}
+                      </span>
+                    )}
 
-      <SidebarRail className="bg-gradient-to-b from-transparent via-border/20 to-transparent hover:via-border/40 transition-colors duration-200" />
-    </Sidebar>
+                    <ChevronRight className="ml-auto h-4 w-4 transition-all duration-300 text-slate-500 group-hover:text-blue-600 data-[active=true]:text-white group-data-[state=open]/collapsible:rotate-90 group-data-[collapsible=icon]:opacity-0 group-hover:scale-110" />
+                  </SidebarMenuButton>
+                </CollapsibleTrigger>
+
+                <CollapsibleContent className="transition-all duration-300 ease-out">
+                  <SidebarMenuSub className="mt-2 ml-8 relative space-y-1 group-data-[collapsible=icon]:hidden">
+                    {/* Decorative line */}
+                    <div className="absolute -left-4 top-0 bottom-0 w-px bg-gradient-to-b from-slate-200 via-slate-300 to-transparent" />
+
+                    {item.items.map((subItem) => (
+                      <SidebarMenuSubItem key={subItem.title}>
+                        <SidebarMenuSubButton
+                          asChild
+                          isActive={subItem.isActive}
+                          className="group relative flex items-center w-full rounded-lg px-4 py-2.5 text-sm transition-all duration-300 ease-out hover:bg-gradient-to-r hover:from-slate-50 hover:to-gray-50 hover:text-slate-900 data-[active=true]:bg-gradient-to-r data-[active=true]:from-blue-100 data-[active=true]:to-indigo-100 data-[active=true]:text-blue-900 hover:translate-x-1 active:scale-[0.98] border border-transparent hover:border-slate-100 data-[active=true]:border-blue-200 hover:shadow-sm"
+                        >
+                          <Link href={subItem.url} className="flex items-center w-full">
+                            {/* Connection dot */}
+                            <div className="relative mr-3 flex items-center justify-center">
+                              <div className="h-2 w-2 rounded-full bg-slate-300 transition-all duration-300 group-hover:bg-blue-500 data-[active=true]:bg-blue-600 group-hover:scale-125 data-[active=true]:scale-125" />
+                              <div className="absolute inset-0 h-2 w-2 rounded-full bg-blue-400 opacity-0 animate-pulse transition-opacity duration-300 data-[active=true]:opacity-50" />
+                            </div>
+
+                            <span className="flex-1 text-slate-600 group-hover:text-slate-900 data-[active=true]:text-blue-900 font-medium transition-colors duration-300">
+                              {subItem.title}
+                            </span>
+
+                            {subItem.badge && (
+                              <span className="inline-flex items-center justify-center px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-600 rounded-md transition-all duration-300 group-hover:bg-blue-100 group-hover:text-blue-700 data-[active=true]:bg-blue-200 data-[active=true]:text-blue-800 shadow-sm">
+                                {subItem.badge}
+                              </span>
+                            )}
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    ))}
+                  </SidebarMenuSub>
+                </CollapsibleContent>
+              </Collapsible>
+            ) : (
+              <SidebarMenuButton
+                asChild
+                isActive={item.isActive}
+                tooltip={item.title}
+                className="group relative flex items-center w-full rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300 ease-out hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-slate-900 hover:shadow-sm data-[active=true]:bg-gradient-to-r data-[active=true]:from-blue-500 data-[active=true]:to-indigo-600 data-[active=true]:text-white data-[active=true]:shadow-lg hover:translate-x-1 active:scale-[0.98] border border-transparent hover:border-blue-100 data-[active=true]:border-blue-300"
+              >
+                <Link href={item.url} className="flex items-center w-full">
+                  {/* Active indicator bar */}
+                  <div className="absolute -left-2 top-1/2 h-6 w-1 bg-gradient-to-b from-blue-500 to-indigo-600 rounded-full transition-all duration-300 -translate-y-1/2 opacity-0 scale-y-0 data-[active=true]:opacity-100 data-[active=true]:scale-y-100" />
+
+                  {item.icon && (
+                    <div className="relative mr-3">
+                      <item.icon className="h-5 w-5 transition-all duration-300 text-slate-600 group-hover:text-blue-600 data-[active=true]:text-white group-hover:scale-110 group-hover:rotate-3" />
+                      {/* Icon background glow for active state */}
+                      <div className="absolute inset-0 bg-white/20 rounded-full scale-0 transition-transform duration-300 data-[active=true]:scale-150 opacity-0 data-[active=true]:opacity-100" />
+                    </div>
+                  )}
+
+                  <span className="flex-1 text-slate-700 group-hover:text-slate-900 data-[active=true]:text-white font-medium group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:pointer-events-none transition-colors duration-300">
+                    {item.title}
+                  </span>
+
+                  {item.badge && (
+                    <span className="inline-flex items-center justify-center px-2.5 py-1 text-xs font-semibold bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-700 rounded-full group-data-[collapsible=icon]:opacity-0 transition-all duration-300 group-hover:from-blue-200 group-hover:to-indigo-200 data-[active=true]:bg-white/20 data-[active=true]:text-white shadow-sm">
+                      {item.badge}
+                    </span>
+                  )}
+                </Link>
+              </SidebarMenuButton>
+            )}
+          </SidebarMenuItem>
+        ))}
+      </SidebarMenu>
+    </SidebarGroup>
   );
 }
