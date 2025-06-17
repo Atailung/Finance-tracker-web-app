@@ -118,24 +118,7 @@ export default function TransactionsPage() {
     merchants: [],
     paymentMethods: [],
   });
-  // previous code 
-  // useEffect(() => {
-  //   async function loadTransactions() {
-  //     const data = await fetchTransactions();
-  //     // Normalize status to lowercase for compatibility
-  //     const normalized = (data as Transaction[]).map((t) => ({
-  //       ...t,
-  //       status:
-  //         typeof t.status === "string"
-  //           ? ["completed", "pending", "failed"].includes(t.status.toLowerCase())
-  //             ? (t.status.toLowerCase() as "completed" | "pending" | "failed")
-  //             : "failed"
-  //           : t.status,
-  //     }));
-  //     setTransactions(normalized);
-  //   }
-  //   loadTransactions();
-  // }, []);
+  
 
 
   // update code 
