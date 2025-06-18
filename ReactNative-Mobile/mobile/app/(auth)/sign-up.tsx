@@ -1,22 +1,22 @@
 
-import {  Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { useSignUp } from '@clerk/clerk-expo'
-import {  Link, useRouter } from 'expo-router'
-import { useState } from 'react'
+import { Link, useRouter } from 'expo-router'
+import * as React from 'react'
 import { styles } from "../../assets/styles/auth.styles"
 import { COLORS } from '@/src/constants/colors'
 import { Ionicons } from '@expo/vector-icons'
-import {Image} from "expo-image";
+import { Image } from "expo-image";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 export default function SignUpScreen() {
     const { isLoaded, signUp, setActive } = useSignUp()
     const router = useRouter()
 
-    const [emailAddress, setEmailAddress] = useState('')
-    const [password, setPassword] = useState('')
-    const [pendingVerification, setPendingVerification] = useState(false)
-    const [code, setCode] = useState('')
-    const [error, setError] = useState("")
+    const [emailAddress, setEmailAddress] = React.useState('')
+    const [password, setPassword] = React.useState('')
+    const [pendingVerification, setPendingVerification] = React.useState(false)
+    const [error, setError] = React.useState("")
+    const [code, setCode] = React.useState("")
 
     // Handle submission of sign-up form
     const onSignUpPress = async () => {
@@ -37,10 +37,18 @@ export default function SignUpScreen() {
             // Set 'pendingVerification' to true to display second form
             // and capture OTP code
             setPendingVerification(true)
-        } catch (err) {
-            // See https://clerk.com/docs/custom-flows/error-handling
-            // for more info on error handling
-            console.error(JSON.stringify(err, null, 2))
+        } catch (error) {
+            if (
+                typeof error === "object" &&
+                error !== null &&
+                "errors" in error &&
+                Array.isArray((error as any).errors) &&
+                (error as any).errors[0]?.code === "form_identifier_exists"
+            ) {
+                setError("that email address is already in use. please try another,")
+            } else {
+                setError("An error occurred. please try again")
+            }
         }
     }
 
@@ -79,21 +87,21 @@ export default function SignUpScreen() {
                 <Text style={styles.verificationTitle}>Verify your email</Text>
                 {error ? (
                     <View style={styles.errorBox}>
-                        <Ionicons name = "alert-circle" size = {20} color = {COLORS.expense} />
+                        <Ionicons name="alert-circle" size={20} color={COLORS.expense} />
                         <Text style={styles.errorText} >{error}</Text>
                         <TouchableOpacity onPress={() => setError("")}>
-                            <Ionicons name = "close" size = {20} color = {COLORS.textLight}/>
+                            <Ionicons name="close" size={20} color={COLORS.textLight} />
                         </TouchableOpacity>
                     </View>
-                ): null}
+                ) : null}
                 <TextInput
-                    style ={[styles.verificationInput, error && styles.errorInput]}
+                    style={[styles.verificationInput, error && styles.errorInput]}
                     value={code}
                     placeholder="Enter your verification code"
                     placeholderTextColor="#9a8478"
                     onChangeText={(code) => setCode(code)}
                 />
-                <TouchableOpacity onPress={onVerifyPress} style = {styles.button}>
+                <TouchableOpacity onPress={onVerifyPress} style={styles.button}>
                     <Text style={styles.buttonText}>Verify</Text>
                 </TouchableOpacity>
             </View>
@@ -102,14 +110,14 @@ export default function SignUpScreen() {
     }
 
     return (
-        <KeyboardAwareScrollView 
-            style={{flex:1}}
-            contentContainerStyle={{flexGrow:1}}
+        <KeyboardAwareScrollView
+            style={{ flex: 1 }}
+            contentContainerStyle={{ flexGrow: 1 }}
             enableOnAndroid={true}
             enableAutomaticScroll={true}
-            >
+        >
             <View style={styles.container}>
-                <Image source = {require("../../assets/images/revenue-i2.png")} style = {styles.illustration}/>
+                <Image source={require("../../assets/images/revenue-i2.png")} style={styles.illustration} />
 
                 <Text style={styles.title}>Create Acount</Text>
                 {error ? (
@@ -148,7 +156,7 @@ export default function SignUpScreen() {
                     </Link>
                 </View>
             </View>
-           
+
         </KeyboardAwareScrollView>
     )
 }

@@ -1,7 +1,7 @@
 import { useSignIn } from '@clerk/clerk-expo'
 import { Link, useRouter } from 'expo-router'
 import { Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import * as React from 'react'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { styles } from '@/assets/styles/auth.styles'
 import { Image } from 'expo-image'
@@ -11,10 +11,10 @@ import { Ionicons } from '@expo/vector-icons'
 export default function Page() {
     const { signIn, setActive, isLoaded } = useSignIn()
     const router = useRouter()
-    const [error, setError] = useState("")
+    const [error, setError] = React.useState("")
 
-    const [emailAddress, setEmailAddress] = useState('')
-    const [password, setPassword] = useState('')
+    const [emailAddress, setEmailAddress] = React.useState('')
+    const [password, setPassword] = React.useState('')
 
     // Handle the submission of the sign-in form
     const onSignInPress = async () => {
@@ -37,10 +37,18 @@ export default function Page() {
                 // complete further steps.
                 console.error(JSON.stringify(signInAttempt, null, 2))
             }
-        } catch (err) {
-            // See https://clerk.com/docs/custom-flows/error-handling
-            // for more info on error handling
-            console.error(JSON.stringify(err, null, 2))
+        } catch (error) {
+            if (
+                typeof error === "object" &&
+                error !== null &&
+                "errors" in error &&
+                Array.isArray((error as any).errors) &&
+                (error as any).errors[0]?.code === "form_password_incorrect"
+            ) {
+                setError("password is incorrect. please try again.")
+            } else {
+                setError("An error occured. please try again")
+            }
         }
     }
 
