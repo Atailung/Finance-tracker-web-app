@@ -1,0 +1,18 @@
+<svg width="300" height="100" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="100" fill="#fff"/> <!-- Dark Background -->
+  <g transform="translate(20, 30)">
+    <!-- Wallet Icon -->
+    <rect x="0" y="10" width="50" height="36" rx="5" ry="5" fill="#FACC15"/>
+    <rect x="6" y="5" width="38" height=" 12" rx="2" ry="2" fill="#FEF3C7"/>
+    
+    <!-- Brand Name -->
+    <text x="65" y="28" fill="#FACC15" font-size="36" font-family="Arial, sans-serif" font-weight="bold">
+      FINTRACK
+    </text>
+    
+    <!-- Tagline -->
+    <text x="65" y="50" fill="#1f4842" font-size="24" font-family="Arial, sans-serif">
+      Track It. Save It.
+    </text>
+  </g>
+</svg>
